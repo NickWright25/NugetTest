@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>NW_Nuget</PackageId>
+    <Authors>Nick Wright</Authors>
+    <Description>A .net 5 nuget package for testing deployment functionality</Description>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+</Project>
