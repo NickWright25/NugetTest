@@ -1,35 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NugetTest
 {
 	public static class ObjectExtensions
 	{
-		public static Type TryGetTypeFromString(this string obj)
+		public static bool TryGetTypeFromString(this string obj, out Type type)
 		{
+			bool result = false;
+			type = null;
 			if (int.TryParse(obj, out _))
 			{
-				return typeof(int);
+				result = true;
+				type = typeof(int);
 			}
 			else if (decimal.TryParse(obj, out _))
 			{
-				return typeof(decimal);
+				result = true;
+				type = typeof(decimal);
 			}
 			else if (double.TryParse(obj, out _))
 			{
-				return typeof(double);
+				result = true;
+				type = typeof(double);
 			}
 			else if (bool.TryParse(obj, out _))
 			{
-				return typeof(bool);
+				result = true;
+				type = typeof(bool);
 			}
-			else
-			{
-				return null;
-			}
+			return result;
 		}
 	}
 }
