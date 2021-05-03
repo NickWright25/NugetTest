@@ -35,20 +35,25 @@ Exit
 				}
 				else 
 				{
-					var num1Type = num1.TryGetTypeFromString();
-					var num2Type = num2.TryGetTypeFromString();
-					if (num1Type != null && num2Type != null && num1Type == num2Type)
+					if (num1.TryGetTypeFromString(out var num1Type) && num2.TryGetTypeFromString(out var num2Type))
 					{
-						operation = operation[0].ToString().ToUpper() + operation[1..];
-						var method = calculator.GetType().GetMethod(operation, new Type[] { num1Type, num2Type });
-						if (method != null)
+						if (num1Type == num2Type)
 						{
-							var result = method.Invoke(calculator, new object[] { Convert.ChangeType(num1, num1Type), Convert.ChangeType(num2, num2Type) });
-							Console.WriteLine($"Result is: {result}");
+							operation = operation[0].ToString().ToUpper() + operation[1..];
+							var method = calculator.GetType().GetMethod(operation, new Type[] { num1Type, num2Type });
+							if (method != null)
+							{
+								var result = method.Invoke(calculator, new object[] { Convert.ChangeType(num1, num1Type), Convert.ChangeType(num2, num2Type) });
+								Console.WriteLine($"Result is: {result}");
+							}
+							else
+							{
+								Console.WriteLine("Invalid operation. Try again.");
+							}
 						}
 						else
 						{
-							Console.WriteLine("Invalid operation. Try again.");
+							Console.WriteLine("Invalid inputs. Try again.");
 						}
 					}
 					else
